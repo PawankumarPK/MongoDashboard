@@ -3,9 +3,23 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>
+    <script src="https://ajax.googleapis.com/ajax/lib/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.main.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Emp Type</th>
+          <th>Hourly Rate</th>
+          <th>Total Hours</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+    </table>
   </body>
 </html>
