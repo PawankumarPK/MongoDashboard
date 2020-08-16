@@ -10,30 +10,7 @@
 </head>
 
 <body>
-  <h1><%= title %></h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Emp Type</th>
-        <th>Hourly Rate</th>
-        <th>Total Hours</th>
-        <th>Total Amount</th>
-      </tr>
-    </thead>
-    <% records.forEach(function(row){%>
-    <tr>
-      <td><%= row.name %></td>
-      <td><%= row.email %></td>
-      <td><%= row.eType %></td>
-      <td><%= row.hourlyrate %></td>
-      <td><%= row.totalHour %></td>
-      <td><%= row.total %></td>
-    </tr>
 
-    <% })%>
-  </table>
 
   <!-- filter form -->
   <div class="container">
@@ -46,7 +23,7 @@
             <div class="form-group">
               <label for="name" class="col-md-12 control-label">By Name</label>
               <div class="col-md-12">
-                <input type="text" id="searchName" class="form-control" name="fltrname" placeholder="Enter Name">
+                <input type="text"   class="form-control" name="fltrname" placeholder="Enter Name">
               </div>
             </div>
           </div>
@@ -83,6 +60,38 @@
   </div>
 
 
+  <div class="container">
+    <div class="row">
+
+      <div>
+        <h1><%= title %></h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Emp Type</th>
+              <th>Hourly Rate</th>
+              <th>Total Hours</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+          <% records.forEach(function(row){%>
+          <tr>
+            <td><%= row.name %></td>
+            <td><%= row.email %></td>
+            <td><%= row.eType %></td>
+            <td><%= row.hourlyrate %></td>
+            <td><%= row.totalHour %></td>
+            <td><%= row.total %></td>
+          </tr>
+
+          <% })%>
+        </table>
+      </div>
+
+    </div>
+  </div>
 
 
 
@@ -90,7 +99,7 @@
 
   <div class="container">
     <div class="row">
-      <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div id="signupbox" style="margin-top:0px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
           <div class="panel-heading">
             <div class='panel-title'>Employee Detail Form</div>

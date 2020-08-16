@@ -34,14 +34,31 @@ router.post('/', function (req, res, next) {
 
 })
 
-router.post("/search/",function(req,res,next){
+router.post("/search/", function (req, res, next) {
 
-  var flrtName = req.body.flreName
-  var flrtEmail = req.body.fltremail
-  var flrtType = req.body.fltremptype
+  var fltrName = req.body.fltrname
+  var fltrEmail = req.body.fltremail
+  var fltremptype = req.body.fltremptype
 
-  employee.exec(function(err,data){
-    if(err)throw err;
+  if (fltrName != " " && fltrEmail != "" && fltremptype != "") {
+    var flterParameter = {
+      $and: [{ name: fltrName },
+      { $and: [{ email: fltrEmail }, { eType: fltremptype }] }]
+    }
+  } else if (fltrName != "" && fltrEmail == "" && fltremptype != "") {
+    var flterParameter = { $and: [{ name: fltrName }, { eType: fltremptype }] }
+
+  } else if (fltrName == "" && fltrEmail != "" && fltremptype != "") {
+    var flterParameter = { $and: [{ email: flrtEmail }, { eType: fltremptype }] }
+
+  } else {
+    var flterParameter = {}
+  }
+
+  var employeeFilter = empModel.find(flterParameter)
+
+  employeeFilter.exec(function (err, data) {
+    if (err) throw err;
     res.render("index", { title: "Employee Records", records: data })
   })
 })
