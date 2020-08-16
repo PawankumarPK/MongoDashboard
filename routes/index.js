@@ -22,11 +22,26 @@ router.post('/', function (req, res, next) {
     totalHour: req.body.ttlhr,
     total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
   });
-  empDetails.save()
-  console.log(empDetails)
 
-  employee.exec(function (err, data) {
+  empDetails.save(function (err, res1) {
     if (err) throw err
+    //console.log(empDetails)
+    employee.exec(function (err, data) {
+      if (err) throw err
+      res.render("index", { title: "Employee Records", records: data })
+    })
+  })
+
+})
+
+router.post("/search/",function(req,res,next){
+
+  var flrtName = req.body.flreName
+  var flrtEmail = req.body.fltremail
+  var flrtType = req.body.fltremptype
+
+  employee.exec(function(err,data){
+    if(err)throw err;
     res.render("index", { title: "Employee Records", records: data })
   })
 })
