@@ -34,81 +34,75 @@
 
     <% })%>
   </table>
-
   <div class="container">
     <div class="row">
       <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <div class="panel-title">Employee Details Form</div>
+            <div class='panel-title'>Employee Detail Form</div>
           </div>
-          <div class="panel-body">
-            <form action="/" id="EmployeeForm" class="form-horizontal" method="post" role="form"
-              enctype="multipart/form-data">
+        </div class="panel-body">
+        <form action="/" id="EmployeeForm" class="form-horizontal" method="post" role="form">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name" class="col-md-3 control-label">Name</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="uname" placeholder="Enter Your Name">
+              </div>
+            </div>
 
-              <div id="signupalert" style="display:none" class="alert alert-danger">
-                <p>Error:</p>
-                <span></span>
+            <div class="form-group">
+              <label for="email" class="col-md-3 control-label">Email</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="email" placeholder="Email Address">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="emptype" class="col-md-3 control-label">Employee Type</label>
+              <div class="col-md-9">
+                <select class="form-control" name="emptype">
+                  <option value="Hourly">Hourly</option>
+                  <option value="Fixed">Fixed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hrlyrate" class="col-md-3 control-label">Hourly Rate</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="hrlyrate" placeholder="Enter Hourly Rate">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="ttlhr" class="col-md-3 control-label"> Total Hour</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="ttlhr" placeholder="Enter Total Hours">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="icode" class="col-md-3 control-label"> Profile Image</label>
+              <div class="col-md-9">
+                <input type="file" class="form-control" name="file">
+              </div>
+            </div>
+            <div class="form-group">
+              <!-- Button -->
+              <div class="col-md-offset-3 col-md-9">
+                <input type="submit" type="button" value="Submit" class="btn btn-info">
               </div>
 
-              <div class="form-group">
-                <label for="name" class="col-md-3 control-label">Name</label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" name="uname" placeholder="Enter Your Name">
-                </div>
-              </div>
+        </form>
 
-              <div class="form-group">
-                <label for="email" class="col-md-3 control-label">Email</label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" name="email" placeholder="Email Address">
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label for="emptype" class="col-md-3 control-label">Employee Type</label>
-                <div class="col-md-9">
-                  <select class="form-control" name="emptype">
-                    <option value="Hourly">Hourly</option>
-                    <option value="Fixed">Fixed</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="hrlyrate" class="col-md-3 control-label">Hourly Rate</label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" name="hrlyrate" placeholder="Enter Hourly Rate">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="ttlhr" class="col-md-3 control-label"> Total Hour</label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" name="ttlhr" placeholder="Enter Total Hours">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="icode" class="col-md-3 control-label"> Profile Image</label>
-                <div class="col-md-9">
-                  <input type="file" class="form-control" name="file">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <!-- Button -->
-                <div class="col-md-offset-3 col-md-9">
-                  <input type="submit" name="submit" value="submit" class="btn btn-primary">
-                </div>
-              </div>
-
-
-
-
-
-            </form>
-
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  
 </body>
 
 </html>
