@@ -13,16 +13,16 @@ router.get('/', function (req, res, next) {
   })
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
   var empDetails = new empModel({
     name: req.body.uname,
     email: req.body.email,
-    etype: req.body.emptype,
+    eType: req.body.emptype,
     hourlyrate: req.body.hrlyrate,
     totalHour: req.body.ttlhr,
     total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
-  });  
-  //empDetails.save()
+  });
+  empDetails.save()
   console.log(empDetails)
 
   employee.exec(function (err, data) {
