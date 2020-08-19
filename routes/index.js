@@ -63,4 +63,16 @@ router.post("/search/", function (req, res, next) {
   })
 })
 
+
+router.get('/delete/:id', function (req, res, next) {
+
+  var id = req.params.id
+  var del = empModel.findByIdAndDelete(id)
+
+  del.exec(function (err, data) {
+    if (err) throw err
+    res.redirect("/")
+  })
+});
+
 module.exports = router;
