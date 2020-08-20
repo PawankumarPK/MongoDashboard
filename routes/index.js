@@ -75,4 +75,33 @@ router.get('/delete/:id', function (req, res, next) {
   })
 });
 
+router.get('/edit/:id', function (req, res, next) {
+
+  var id = req.params.id
+  var edit = empModel.findById(id)
+
+  edit.exec(function (err, data) {
+    if (err) throw err
+    res.render('edit', { title: 'Edit Employee Record', records: data });
+  })
+})
+
+var user_id = '5f3d2faccdbdd901476f264c';
+router.post('/update/', function (req, res, next) {
+  var update = empModel.findByIdAndUpdate(req.body.id, {
+    name: req.body.uname,
+    email: req.body.email,
+    eType: req.body.emptype,
+    hourlyrate: req.body.hrlyrate,
+    totalHour: req.body.ttlhr,
+    total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
+
+  })
+
+  update.exec(function (err, data) {
+    if (err) throw err
+    res.redirect("/")
+  })
+})
+
 module.exports = router;

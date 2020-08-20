@@ -1,5 +1,5 @@
 var mangoose = require("mongoose")
-mangoose.connect("mongodb://localhost:27017/employee", { useNewUrlParser: true })
+mangoose.connect("mongodb://localhost:27017/employee", {useUnifiedTopology: true, useNewUrlParser: true })
 var conn = mangoose.connection
 
 var employeeSchema = new mangoose.Schema({
