@@ -26,7 +26,8 @@
                         <div class="panel-title">Upload File</div>
                     </div>
                     <div class="panel-body">
-                        <form action="/upload" id="EmployeeForm" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
+                        <form action="/upload" id="EmployeeForm" class="form-horizontal" method="post" role="form"
+                            enctype="multipart/form-data">
 
 
                             <div class="form-group">
@@ -43,6 +44,7 @@
                                     <input type="submit" name="submit" value="Upload" class="btn btn-primary">
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -53,9 +55,12 @@
 
     <div class="container">
         <div class="row">
+            <%if (records.length > 0){ %>
+            <% records.forEach(function(row){ %>
             <div class="col-md-4">
-    
+                <img src="./uploads/<%= row.imagename %>" alt="image" style="width:100%;margin:5px auto;">
             </div>
+            <% }) }%>
         </div>
     </div>
 

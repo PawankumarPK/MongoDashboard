@@ -5,8 +5,10 @@ var router = express.Router();
 var empModel = require("../modules/employee")
 var employee = empModel.find({})
 
+
 //Get imageSchema
 var uploadModel = require("../modules/upload")
+var imageData = uploadModel.find({})
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -37,24 +39,27 @@ var upload = multer({
 
 router.post('/upload', upload, function (req, res, next) {
 
-  var imageFile = req.file.filename 
+  var imageFile = req.file.filename
   var success = req.file.filename + " Uploaded Successfully"
 
   var imageDetails = new uploadModel({
-    imagename : imageFile 
+    imagename: imageFile
   })
-  imageDetails.save(function(err,doc){
-    if(err) throw err
-    res.render('upload-file', { title: 'Upload File', success: success });
+  imageDetails.save(function (err, doc) {
+    if (err) throw err
+    imageData.exec(function (err, data) {
+      if (err) throw err
+      res.render('upload-file', { title: 'Upload File', records: data, success: success });
+    })
+
   })
 
 });
 
 router.get('/upload', function (req, res, next) {
-  employee.exec(function (err, data) {
+  imageData.exec(function (err, data) {
     if (err) throw err
-
-    res.render('upload-file', { title: 'Upload File', success: "" });
+    res.render('upload-file', { title: 'Upload File', records: data, success: "" });
   })
 });
 
