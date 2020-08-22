@@ -1,14 +1,27 @@
 var express = require('express');
 var router = express.Router();
 
+//get employee class
+var empModel = require("../modules/employee")
+var employee = empModel.find({})
+
+//Get imageSchema
+var uploadModel = require("../modules/upload")
+
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  employee.exec(function (err, data) {
+    if (err) throw err
+
+    res.render('index', { title: 'Employee Records', records: data, success: "" });
+  })
+});
+
+
 //multer
 var multer = require("multer")
 var path = require("path")
 router.use(express.static(__dirname + "./public"))
-
-//get employee class
-var empModel = require("../modules/employee")
-var employee = empModel.find({})
 
 //Define multer function
 var Storage = multer.diskStorage({
@@ -22,20 +35,18 @@ var upload = multer({
   storage: Storage
 }).single("file")
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  employee.exec(function (err, data) {
-    if (err) throw err
-
-    res.render('index', { title: 'Employee Records', records: data, success: "" });
-  })
-});
-
 router.post('/upload', upload, function (req, res, next) {
 
+  var imageFile = req.file.filename 
   var success = req.file.filename + " Uploaded Successfully"
 
-  res.render('upload-file', { title: 'Upload File', success: success });
+  var imageDetails = new uploadModel({
+    imagename : imageFile 
+  })
+  imageDetails.save(function(err,doc){
+    if(err) throw err
+    res.render('upload-file', { title: 'Upload File', success: success });
+  })
 
 });
 
@@ -46,6 +57,7 @@ router.get('/upload', function (req, res, next) {
     res.render('upload-file', { title: 'Upload File', success: "" });
   })
 });
+
 
 router.post('/', function (req, res, next) {
   var empDetails = new empModel({
