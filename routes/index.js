@@ -13,6 +13,14 @@ router.get('/', function (req, res, next) {
   })
 });
 
+router.get('/upload', function (req, res, next) {
+  employee.exec(function (err, data) {
+    if (err) throw err
+
+    res.render('upload-file', { title: 'Upload File', success: "" });
+  })
+});
+
 router.post('/', function (req, res, next) {
   var empDetails = new empModel({
     name: req.body.uname,
@@ -59,7 +67,7 @@ router.post("/search/", function (req, res, next) {
 
   employeeFilter.exec(function (err, data) {
     if (err) throw err;
-    res.render("index", { title: "Employee Records", records: data })
+    res.render("index", { title: "Employee Records", records: data ,success: "Filter Data"})
   })
 })
 
