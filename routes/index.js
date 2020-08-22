@@ -1,8 +1,26 @@
 var express = require('express');
 var router = express.Router();
+
+//multer
+var multer = require("multer")
+var path = require("path")
+router.use(express.static(__dirname + "./public"))
+
 //get employee class
 var empModel = require("../modules/employee")
 var employee = empModel.find({})
+
+//Define multer function
+var Storage = multer.diskStorage({
+  destination: "./public/uploads/",
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+  }
+})
+
+var upload = multer({
+  storage: Storage
+}).single("file")
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -11,6 +29,14 @@ router.get('/', function (req, res, next) {
 
     res.render('index', { title: 'Employee Records', records: data, success: "" });
   })
+});
+
+router.post('/upload', upload, function (req, res, next) {
+
+  var success = req.file.filename + " Uploaded Successfully"
+
+  res.render('upload-file', { title: 'Upload File', success: success });
+
 });
 
 router.get('/upload', function (req, res, next) {
@@ -67,7 +93,7 @@ router.post("/search/", function (req, res, next) {
 
   employeeFilter.exec(function (err, data) {
     if (err) throw err;
-    res.render("index", { title: "Employee Records", records: data ,success: "Filter Data"})
+    res.render("index", { title: "Employee Records", records: data, success: "Filter Data" })
   })
 })
 
