@@ -140,7 +140,6 @@ router.get('/edit/:id', function (req, res, next) {
   })
 })
 
-var user_id = '5f3d2faccdbdd901476f264c';
 router.post('/update/', function (req, res, next) {
   var update = empModel.findByIdAndUpdate(req.body.id, {
     name: req.body.uname,
