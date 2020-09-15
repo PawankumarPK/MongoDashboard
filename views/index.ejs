@@ -20,8 +20,8 @@
       <% if(success != ""){%>
       <div class="alert alert-success">
         <strong>Success !</strong> <%=success %>
-    </div>
-    <%}%>
+      </div>
+      <%}%>
 
       <h1>Filter Employee Records</h1>
       <div class="col-md-12">
@@ -73,41 +73,44 @@
 
       <div>
         <h1><%= title %></h1>
-    <table class="table">
-      <thead>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Emp Type</th>
+            <th>Hourly Rate</th>
+            <th>Total Hours</th>
+            <th>Total Amount</th>
+            <th>Profile Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <% records.forEach(function(row){%>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Emp Type</th>
-          <th>Hourly Rate</th>
-          <th>Total Hours</th>
-          <th>Total Amount</th>
-          <th>Action</th>
+          <td><%= row.name %></td>
+          <td><%= row.email %></td>
+          <td><%= row.eType %></td>
+          <td><%= row.hourlyrate %></td>
+          <td><%= row.totalHour %></td>
+          <td><%= row.total %></td>
+          <td>
+            <% if(row.image){%>
+            <img src="./uploads/<%= row.image %>" alt="profile image" width="50">
+            <%}%>
+          </td>
+          <td>
+            <a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-danger btn-xs" href="/delete/<%= row._id %>"><i class="fa fa-trash"></i></a>
+          </td>
         </tr>
-      </thead>
-      <% records.forEach(function(row){%>
-      <tr>
-        <td><%= row.name %></td>
-        <td><%= row.email %></td>
-        <td><%= row.eType %></td>
-        <td><%= row.hourlyrate %></td>
-        <td><%= row.totalHour %></td>
-        <td><%= row.total %></td>
-        <td>
-          <a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a>
-          <a class="btn btn-danger btn-xs" href="/delete/<%= row._id %>"><i class="fa fa-trash"></i></a>
-        </td>
-      </tr>
 
-      <% })%>
-    </table>
-  </div>
+        <% })%>
+      </table>
+    </div>
 
   </div>
   </div>
-
-
-
 
 
   <div class=" container">
@@ -119,7 +122,8 @@
           </div>
         </div class="panel-body">
 
-        <form action="/" id="EmployeeForm" class="form-horizontal" method="post" role="form">
+        <form action="/" id="EmployeeForm" class="form-horizontal" method="post" role="form"
+          enctype="multipart/form-data">
 
           <div class="form-group">
             <div class="form-group">
@@ -167,6 +171,7 @@
                 <input type="file" class="form-control" name="file">
               </div>
             </div>
+
             <div class="form-group">
               <!-- Button -->
               <div class="col-md-offset-3 col-md-9">

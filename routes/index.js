@@ -64,7 +64,7 @@ router.get('/upload', function (req, res, next) {
 });
 
 
-router.post('/', function (req, res, next) {
+router.post('/', upload, function (req, res, next) {
   var empDetails = new empModel({
     name: req.body.uname,
     email: req.body.email,
@@ -72,6 +72,8 @@ router.post('/', function (req, res, next) {
     hourlyrate: req.body.hrlyrate,
     totalHour: req.body.ttlhr,
     total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
+    totalHour: req.body.ttlhr,
+    image: req.file.filename
   });
 
   empDetails.save(function (err, res1) {

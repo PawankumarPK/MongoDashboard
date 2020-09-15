@@ -8,7 +8,8 @@ var employeeSchema = new mangoose.Schema({
     eType: String,
     hourlyrate: Number,
     totalHour: Number,
-    total: Number
+    total: Number,
+    image:String,
 })
 
 var employeeModel = mangoose.model("Employees", employeeSchema)
