@@ -142,22 +142,37 @@ router.get('/edit/:id', function (req, res, next) {
   })
 })
 
-router.post('/update/', function (req, res, next) {
-  var update = empModel.findByIdAndUpdate(req.body.id, {
-    name: req.body.uname,
-    email: req.body.email,
-    eType: req.body.emptype,
-    hourlyrate: req.body.hrlyrate,
-    totalHour: req.body.ttlhr,
-    total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
 
-  })
 
+router.post('/update/', upload, function (req, res, next) {
+
+  if (req.file) {
+    var dataRecords = {
+      name: req.body.uname,
+      email: req.body.email,
+      eType: req.body.emptype,
+      hourlyrate: req.body.hrlyrate,
+      totalHour: req.body.ttlhr,
+      total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
+      image: req.file.filename
+    }
+  } else {
+    var dataRecords = {
+      name: req.body.uname,
+      email: req.body.email,
+      eType: req.body.emptype,
+      hourlyrate: req.body.hrlyrate,
+      totalHour: req.body.ttlhr,
+      total: parseInt(req.body.hrlyrate) * parseInt(req.body.ttlhr),
+    }
+  }
+
+  var update = empModel.findByIdAndUpdate(req.body.id, dataRecords)
   update.exec(function (err, data) {
     if (err) throw err
     employee.exec(function (err, data) {
       if (err) throw err
-      res.render("index", { title: "Employee Records", records: data, success: "Record Updated Successfully" })
+      res.redirect("/")
     })
   })
 })
