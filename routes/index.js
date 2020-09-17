@@ -199,9 +199,6 @@ router.get("/autocomplete/",function(req,res,next){
     }
 
   })
-
-
-
 })
 
 module.exports = router;
