@@ -177,4 +177,31 @@ router.post('/update/', upload, function (req, res, next) {
   })
 })
 
+router.get("/autocomplete/",function(req,res,next){
+
+  var regx = new RegExp(req.query["term"],"i")
+
+  var employeeFilter = empModel.find({name:regx},{"name":1}).sort({"updated_at":-1}).sort({"created_at":-1}).limit(20)
+  employeeFilter.exec(function(err,data){
+
+    var result = []
+    if(!err){
+      if(data && data.length && data.length > 0){
+        data.forEach(user =>{
+          let obj = {
+            id: user._id,
+            label: user.name
+          }
+          result.push(obj)
+        })
+      }
+      res.jsonp(result)
+    }
+
+  })
+
+
+
+})
+
 module.exports = router;
