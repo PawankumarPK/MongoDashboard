@@ -92,19 +92,19 @@
         </thead>
         <% records.forEach(function(row){%>
         <tr>
-          <td><%= row.name %></td>
-          <td><%= row.email %></td>
-          <td><%= row.eType %></td>
-          <td><%= row.hourlyrate %></td>
-          <td><%= row.totalHour %></td>
-          <td><%= row.total %></td>
+          <td><a href="/edit/<%= row._id %>"><%= row.name %></a></td>
+          <td><a href="/edit/<%= row._id %>"><%= row.email %></a></td>
+          <td><a href="/edit/<%= row._id %>"><%= row.eType %></a></td>
+          <td><a href="/edit/<%= row._id %>"><%= row.hourlyrate %></a></td>
+          <td><a href="/edit/<%= row._id %>"><%= row.totalHour %></a></td>
+          <td><a href="/edit/<%= row._id %>"><%= row.total %></a></td>
           <td>
             <% if(row.image){%>
             <img src="./uploads/<%= row.image %>" alt="profile image" width="50">
             <%}%>
           </td>
           <td>
-            <a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a>
+            <!-- <a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a> -->
             <a class="btn btn-danger btn-xs" href="/delete/<%= row._id %>"><i class="fa fa-trash"></i></a>
           </td>
         </tr>
